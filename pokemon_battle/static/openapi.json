@@ -1,0 +1,76 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Pokémon Battle API",
+      "description": "API for simulating battles between Pokémon",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/pokemon/{name}": {
+        "get": {
+          "summary": "Get Pokémon Information",
+          "description": "Retrieve information about a Pokémon by its name",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "path",
+              "description": "Name of the Pokémon",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            },
+            "404": {
+              "description": "Pokémon not found"
+            }
+          }
+        }
+      },
+      "/pokemon/battle": {
+        "post": {
+          "summary": "Simulate Pokémon Battle",
+          "description": "Simulate a battle between two Pokémon",
+          "requestBody": {
+            "description": "Pokémon names for battle simulation",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pokemon1": {
+                      "type": "string"
+                    },
+                    "pokemon2": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["pokemon1", "pokemon2"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            },
+            "404": {
+              "description": "Pokémon not found"
+            }
+          }
+        }
+      }
+    }
+  }
+  
