@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from .database import store_pokemon_to_db, get_pokemon_from_db
+from .battle_logic import simulate_battle_logic
 import requests
-import random
 
 api = Blueprint('api', __name__)
 
@@ -30,13 +30,13 @@ def simulate_battle():
         return jsonify({'error': 'Pokémon not found.'}), 404
 
     # Perform battle calculations and determine the winner
-    winner = random.choice([pokemon1_name, pokemon2_name])
+    winner = simulate_battle_logic(pokemon1, pokemon2)
 
     # Return the battle result as a JSON response
     result = {
-        'pokemon1': pokemon1_name,
-        'pokemon2': pokemon2_name,
-        'winner': winner  # Replace with actual winner determination
+        pokemon1_name: pokemon1,
+        pokemon2_name: pokemon2,
+        'winner': winner['name']
     }
 
     return jsonify(result)

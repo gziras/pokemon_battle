@@ -29,6 +29,7 @@ def configure_settings(app, settings_override):
         'TESTING': False,
         'SQLALCHEMY_DATABASE_URI': 'sqlite:///pokemon_battle.sqlite'
     })
+    # app.json.sort_keys = False
     if settings_override:
         app.config.update(settings_override)
 
